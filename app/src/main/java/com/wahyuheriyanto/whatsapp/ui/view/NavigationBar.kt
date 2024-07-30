@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.compose.rememberNavController
+import com.wahyuheriyanto.whatsapp.CameraActivity
 import com.wahyuheriyanto.whatsapp.ChatActivity
 import com.wahyuheriyanto.whatsapp.ui.viewmodel.CallListViewModel
 import com.wahyuheriyanto.whatsapp.ui.viewmodel.ChatListViewModel
@@ -191,11 +192,11 @@ class NavigationBar {
             }
             2 -> {
                 // Navigate to another activity
-                context.startActivity(Intent(context, ChatActivity::class.java))
+                context.startActivity(Intent(context, CameraActivity::class.java))
             }
             3 -> {
                 // Navigate to yet another activity
-                context.startActivity(Intent(context, ChatActivity::class.java))
+                context.startActivity(Intent(context, CameraActivity::class.java))
             }
             // Add more cases as needed
         }

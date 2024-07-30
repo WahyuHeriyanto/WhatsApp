@@ -45,6 +45,14 @@
             android:theme="@style/Theme.WhatsApp">
         </activity>
 
+        <activity
+            android:name=".CameraActivity"
+            android:exported="true"
+            android:theme="@style/Theme.WhatsApp">
+        </activity>
+
+
+
         <service
             android:name=".data.repository.MyFirebaseMessagingService"
             android:exported="false">
