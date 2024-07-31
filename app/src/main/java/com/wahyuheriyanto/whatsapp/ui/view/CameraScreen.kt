@@ -2,6 +2,7 @@ package com.wahyuheriyanto.whatsapp.ui.view
 
 import android.Manifest
 import android.content.Context
+import android.graphics.ColorFilter
 import android.net.Uri
 import android.util.Log
 import android.widget.Toast
@@ -9,22 +10,32 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Button
+import androidx.compose.material.IconButton
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.unit.dp
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.google.common.util.concurrent.ListenableFuture
+import com.wahyuheriyanto.whatsapp.R
 import com.wahyuheriyanto.whatsapp.ui.viewmodel.CameraViewModel
 import com.wahyuheriyanto.whatsapp.data.repository.CameraViewModelFactory
+import com.wahyuheriyanto.whatsapp.ui.theme.WhatsAppTheme
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
@@ -68,15 +79,28 @@ fun CameraScreen() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         CameraPreview(previewView)
-        Button(
-            onClick = { takePhoto(context, imageCapture, viewModel) },
+        Box(
+            contentAlignment = Alignment.BottomCenter,
             modifier = Modifier
-                .align(Alignment.BottomCenter)
+                .fillMaxSize()
                 .padding(16.dp)
         ) {
-            Text("Capture")
+            IconButton(
+                onClick = { takePhoto(context, imageCapture, viewModel) },
+                modifier = Modifier
+                    .size(64.dp)
+                    .clip(CircleShape)
+            ) {
+                Image(
+                    painter = painterResource(id = R.drawable.shutter_icon),
+                    contentDescription = "Capture",
+                    modifier = Modifier.size(64.dp),
+                )
+            }
         }
     }
+
+
 }
 
 @Composable
@@ -152,5 +176,16 @@ suspend fun <T> ListenableFuture<T>.await(context: Context): T {
                 cont.resumeWithException(e)
             }
         }, ContextCompat.getMainExecutor(context))
+    }
+}
+
+@androidx.compose.ui.tooling.preview.Preview
+@Composable
+
+fun PreviewCamera(){
+    WhatsAppTheme {
+        Surface(modifier = Modifier.fillMaxSize()) {
+            CameraScreen()
+        }
     }
 }

@@ -15,12 +15,16 @@ import com.wahyuheriyanto.whatsapp.ui.viewmodel.MessageViewModel
 class ChatActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent { 
+        val chatName = intent.getStringExtra("chat_name")
+        setContent {
             WhatsAppTheme {
-                Surface (
+                Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background){
-                    MessageScreen(viewModel = MessageViewModel())
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    if (chatName != null) {
+                        MessageScreen(viewModel = MessageViewModel(), chatName = chatName)
+                    }
                 }
             }
         }

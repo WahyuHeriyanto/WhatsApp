@@ -24,7 +24,7 @@ import com.wahyuheriyanto.whatsapp.ui.theme.WhatsAppTheme
 import com.wahyuheriyanto.whatsapp.ui.viewmodel.MessageViewModel
 
 @Composable
-fun MessageScreen(viewModel: MessageViewModel) {
+fun MessageScreen(viewModel: MessageViewModel, chatName: String) {
     val messages by viewModel.messages.collectAsState()
 
     Column(
@@ -34,6 +34,7 @@ fun MessageScreen(viewModel: MessageViewModel) {
     ) {
         LazyColumn(modifier = Modifier.weight(1f)) {
             items(messages) { message ->
+                Text(text = chatName, color = Color.Black)
                 Text(text = "${message.senderId}: ${message.content}", color = Color.Black)
             }
         }
@@ -67,7 +68,7 @@ fun MessageScreen(viewModel: MessageViewModel) {
 fun MessageScreenPreview() {
     WhatsAppTheme {
         Surface (modifier = Modifier.fillMaxSize()) {
-            MessageScreen(viewModel = MessageViewModel())
+            MessageScreen(viewModel = MessageViewModel(), chatName = "chatName")
         }
     }
 }

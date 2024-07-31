@@ -20,16 +20,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.annotation.ExperimentalCoilApi
+import coil.compose.rememberImagePainter
 import com.wahyuheriyanto.whatsapp.ui.theme.WhatsAppTheme
 import com.wahyuheriyanto.whatsapp.ui.viewmodel.StatusListViewModel
 
 
 class StatusScreen {
+    @OptIn(ExperimentalCoilApi::class)
     @Composable
     fun StatusList(viewModel: StatusListViewModel) {
 
         val statusItems = viewModel.status.collectAsState(initial = emptyList())
         val myStatusItems = viewModel.mystatus.collectAsState(initial = emptyList())
+
 
         LazyColumn {
             item {
@@ -38,7 +42,9 @@ class StatusScreen {
             items (myStatusItems.value) { mystat->
                 Row (modifier = Modifier.fillMaxSize()){
                     Spacer(modifier = Modifier.padding(horizontal = 10.dp))
-                    Image(painter = painterResource(id = mystat.photo),
+                    Image(
+                        //painter = painterResource(id = mystat.photo),
+                        painter = rememberImagePainter(mystat.photo),
                         contentDescription = "",
                         modifier = Modifier.size(50.dp))
                     Spacer(modifier = Modifier.padding(horizontal = 10.dp))
@@ -62,6 +68,7 @@ class StatusScreen {
                     Spacer(modifier = Modifier.padding(horizontal = 8.dp))
                     Image(
                         painter = painterResource(stat.photo),
+                        //painter = rememberImagePainter(myStatus.photoUrl),
                         contentDescription = "",
                         modifier = Modifier.size(50.dp)
                     )

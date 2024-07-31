@@ -36,8 +36,10 @@ class StatusListViewModel : ViewModel() {
                 for (document in result) {
                     val name = document.getString("name") ?: ""
                     val time = document.getString("time") ?: ""
+                    //val photoUrl = document.getString("photoUrl") ?: ""
                     val photo =  R.drawable.camera_logo
                     statusList.add(StatusItem(name, time, photo))
+                    //statusList.add(StatusItem(name, time, photoUrl))
 
                 }
                 _status.value = statusList
@@ -56,8 +58,10 @@ class StatusListViewModel : ViewModel() {
             .addOnSuccessListener { result ->
                 val myStatusList = mutableListOf<MyStatus>()
                 for (document in result) {
-                    val photo = R.drawable.camera_logo
-                    myStatusList.add(MyStatus(photo))
+                    //val photo = R.drawable.camera_logo
+                    val photoUrl = document.getString("photoUrl") ?: ""
+                    //myStatusList.add(MyStatus(photo))
+                    myStatusList.add(MyStatus(photoUrl))
                 }
                 _mystatus.value = myStatusList
                 Log.d("Firestore", "Data fetched: $myStatusList")
