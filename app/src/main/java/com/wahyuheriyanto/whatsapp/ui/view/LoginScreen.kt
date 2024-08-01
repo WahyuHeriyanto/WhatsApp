@@ -21,9 +21,11 @@ import com.google.android.gms.common.api.ApiException
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.ui.graphics.Color
+import com.google.accompanist.permissions.ExperimentalPermissionsApi
 import com.wahyuheriyanto.whatsapp.HomeActivity
 import com.wahyuheriyanto.whatsapp.R
 
+@OptIn(ExperimentalPermissionsApi::class)
 @Composable
 fun LoginScreen(viewModel: AuthViewModel = viewModel()) {
     var email by remember { mutableStateOf("") }
@@ -78,8 +80,7 @@ fun LoginScreen(viewModel: AuthViewModel = viewModel()) {
             onValueChange = { password = it },
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth(),
-
+            modifier = Modifier.fillMaxWidth()
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(

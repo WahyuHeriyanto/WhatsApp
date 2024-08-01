@@ -1,12 +1,10 @@
 package com.wahyuheriyanto.whatsapp.ui.viewmodel
 
 import android.app.Application
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.firebase.auth.FirebaseAuth
 import com.wahyuheriyanto.whatsapp.data.repository.AuthRepository
-import com.wahyuheriyanto.whatsapp.HomeActivity
 import kotlinx.coroutines.launch
 
 class AuthViewModel(application: Application) : AndroidViewModel(application) {
