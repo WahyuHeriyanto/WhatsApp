@@ -24,9 +24,9 @@ class HomeActivity : ComponentActivity(){
         setContent{
             WhatsAppTheme {
                 Surface {
-                    //NavigationBar().ViewButtonNavbar()
-                    val authViewModel: AuthViewModel by viewModels()
-                    LoginScreen(viewModel = authViewModel)
+                    NavigationBar().ViewButtonNavbar()
+//                    val authViewModel: AuthViewModel by viewModels()
+//                    LoginScreen(viewModel = authViewModel)
                 }
             }
         }

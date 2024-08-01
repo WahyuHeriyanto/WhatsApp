@@ -1,6 +1,7 @@
 package com.wahyuheriyanto.whatsapp.ui.view
 
 import android.app.Activity
+import android.content.Intent
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.*
@@ -19,10 +20,12 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.api.ApiException
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.ui.graphics.Color
+import com.wahyuheriyanto.whatsapp.HomeActivity
 import com.wahyuheriyanto.whatsapp.R
 
 @Composable
-fun LoginScreen(viewModel: AuthViewModel) {
+fun LoginScreen(viewModel: AuthViewModel = viewModel()) {
     var email by remember { mutableStateOf("") }
     var password by remember { mutableStateOf("") }
     val context = LocalContext.current as Activity
@@ -43,7 +46,13 @@ fun LoginScreen(viewModel: AuthViewModel) {
             try {
                 val account = task.getResult(ApiException::class.java)
                 account?.idToken?.let { idToken ->
-                    viewModel.loginWithGoogle(idToken)
+                    viewModel.loginWithGoogle(idToken, {
+                        val intent = Intent(context, HomeActivity::class.java)
+                        context.startActivity(intent)
+                        context.finish()
+                    }, {
+                        errorMessage = it
+                    })
                 }
             } catch (e: ApiException) {
                 errorMessage = e.message.toString()
@@ -69,14 +78,22 @@ fun LoginScreen(viewModel: AuthViewModel) {
             onValueChange = { password = it },
             label = { Text("Password") },
             visualTransformation = PasswordVisualTransformation(),
-            modifier = Modifier.fillMaxWidth()
+            modifier = Modifier.fillMaxWidth(),
+
         )
         Spacer(modifier = Modifier.height(16.dp))
         Button(
             onClick = {
                 isLoading = true
-                viewModel.loginWithEmailPassword(email, password)
-                isLoading = false
+                viewModel.loginWithEmailPassword(email, password, {
+                    isLoading = false
+                    val intent = Intent(context, HomeActivity::class.java)
+                    context.startActivity(intent)
+                    context.finish()
+                }, {
+                    isLoading = false
+                    errorMessage = it
+                })
             },
             modifier = Modifier.fillMaxWidth()
         ) {

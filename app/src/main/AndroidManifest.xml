@@ -51,6 +51,12 @@
             android:theme="@style/Theme.WhatsApp">
         </activity>
 
+        <activity
+            android:name=".LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.WhatsApp">
+        </activity>
+
 
 
         <service
