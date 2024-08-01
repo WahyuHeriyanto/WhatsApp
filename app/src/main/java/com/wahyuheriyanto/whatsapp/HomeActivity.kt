@@ -4,6 +4,7 @@ import android.content.res.Configuration
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
@@ -11,7 +12,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.google.firebase.FirebaseApp
 import com.wahyuheriyanto.whatsapp.ui.theme.WhatsAppTheme
+import com.wahyuheriyanto.whatsapp.ui.view.LoginScreen
 import com.wahyuheriyanto.whatsapp.ui.view.NavigationBar
+import com.wahyuheriyanto.whatsapp.ui.viewmodel.AuthViewModel
 
 class HomeActivity : ComponentActivity(){
 
@@ -21,7 +24,9 @@ class HomeActivity : ComponentActivity(){
         setContent{
             WhatsAppTheme {
                 Surface {
-                    NavigationBar().ViewButtonNavbar()
+                    //NavigationBar().ViewButtonNavbar()
+                    val authViewModel: AuthViewModel by viewModels()
+                    LoginScreen(viewModel = authViewModel)
                 }
             }
         }

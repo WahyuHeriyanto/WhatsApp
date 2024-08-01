@@ -12,7 +12,20 @@
           "package_name": "com.wahyuheriyanto.whatsapp"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "332631994640-66bknjcae0c85o0ulnstqp70f46ccqui.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.wahyuheriyanto.whatsapp",
+            "certificate_hash": "f2008638d2567c2478d24e0010617c11fe1b6293"
+          }
+        },
+        {
+          "client_id": "332631994640-4555hh22n95d9qom13u4ul7s3t3fm54j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyCswYqa4D4QvSX_OR6vyhmpWl1s1uSicRM"
@@ -20,7 +33,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "332631994640-4555hh22n95d9qom13u4ul7s3t3fm54j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
